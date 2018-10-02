@@ -12,16 +12,20 @@
             </div>
           </div>
           <div class='profile-user-info'>
-            <div class='profile-category'><div><span>분류</span></div><div><input type='text' /></div></div>
-            <div class='profile-sex'><div><span>성별</span></div><div><input type='text' /></div></div>
-            <div class='profile-name'><div><span>이름</span></div><div><input type='text' /></div></div>
-            <div class='profile-age'><div><span>나이</span></div><div><input type='text' /></div></div>
-            <div class='profile-phone'><div><span>핸드폰</span></div><div><input type='text' /></div></div>
-            <div class='profile-blood'><div><span>혈액형</span></div><div><input type='text' /></div></div>
-            <div class='profile-email'><div><span>이메일</span></div><div><input type='text' /></div></div>
-            <div class='profile-job'><div><span>직업</span></div><div><input type='text' /></div></div>
-            <div class='profile-birth'><div><span>생년월일</span></div><div><input type='text' /></div></div>
-            <div class='profile-hobby'><div><span>취미</span></div><div><input type='text' /></div></div>
+            <div class='info-left'>
+              <div class='profile-category'><div class='input-inline'><span>분류</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-name'><div class='input-inline'><span>이름</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-phone'><div class='input-inline'><span>핸드폰</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-email'><div class='input-inline'><span>이메일</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-birth'><div class='input-inline'><span>생년월일</span></div><div class='input-inline'><input type='text' /></div></div>
+            </div>
+            <div class='info-right'>
+              <div class='profile-sex'><div class='input-inline'><span>성별</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-age'><div class='input-inline'><span>나이</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-blood'><div class='input-inline'><span>혈액형</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-job'><div class='input-inline'><span>직업</span></div><div class='input-inline'><input type='text' /></div></div>
+              <div class='profile-hobby'><div class='input-inline'><span>취미</span></div><div class='input-inline'><input type='text' /></div></div>
+            </div>
           </div>
         </div>
         <div class='profile-detail-info'>
@@ -47,11 +51,18 @@ export default {
 }
 </script>
 <style scoped>
+  .profile-basic-info {
+    background-color: #f8f8f7;
+    border-top: solid 2px #000000;
+    padding: 6% 4%;
+    width: 50%;
+    margin: 0 auto;
+  }
   .profile-user-image {
     position: relative;
-    width: 11rem;
-    height: 13rem;
-
+    float: left;
+    width: 12rem;
+    height: 15rem;
   }
   .profile-user-image .image-box {
     position: absolute;
@@ -75,14 +86,18 @@ export default {
     max-width:100%;
     max-height:100%;
   }
-  .profile-user-image {
-    float: left;
-
+  .profile-user-info {
+    margin-left: 13rem;
   }
-  .profile-user-info .profile-category { float: left; }
+  .profile-user-info { font-size: 24px; }
+  .profile-user-info .info-left { float: left; }
+  .profile-user-info .input-inline { display: inline-block; margin: 0.5rem;}
+  .info-left .input-inline span{ display: inline-block; min-width: 7vw; }
+  .info-right .input-inline span{ display: inline-block; min-width: 5vw; }
+  .info-right .input-inline input { width: 8rem; }
+  /* .profile-user-info .profile-category { float: left; }
   .profile-user-info .profile-name { float: left; }
   .profile-user-info .profile-phone { float: left; }
   .profile-user-info .profile-email { float: left; }
-  .profile-user-info .profile-birth { float: left; }
-
+  .profile-user-info .profile-birth { float: left; } */
 </style>
