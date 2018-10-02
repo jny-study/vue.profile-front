@@ -80,6 +80,7 @@
   }
   .pagenation { 
     display: inline-block;
+    vertical-align: middle;
   }
   .pagenation a {
     color: black;
