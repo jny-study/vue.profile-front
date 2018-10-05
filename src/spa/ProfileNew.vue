@@ -33,8 +33,8 @@
         </div>
         <!-- detail-info -->
         <div class='profile-detail-container'>
-          <button class='profile-detail-button' type='button' v-if='isOpen' @click='what'>상세 정보 입력 닫기</button>
-          <button class='profile-detail-button' type='button' v-else @click='what'>상세 정보 입력</button>
+          <button class='profile-detail-button' type='button' v-if='isOpen' @click='toggleDetailBox()'>상세 정보 입력 닫기</button>
+          <button class='profile-detail-button' type='button' v-else @click='toggleDetailBox()'>상세 정보 입력</button>
           <!-- detail-info input box -->
           <div v-show='isOpen' class='profile-detail-info'>
             <div class='profile-zipcode input-inline'>
@@ -88,19 +88,12 @@ export default {
   name: 'profile-new',
   data: function() {
     return {
-      isOpen: fals,
+      isOpen: false,
     }
   },
   methods: {
-    hello: function() {
-      let x = document.getElementById('profile-detail-container');
-      if(x.style.display === 'none') { return x.style.display = 'block'; }
-      else { return x.style.display = 'none'; }
-    },
-    what: function() {
-      console.log(this.isOpen);
+    toggleDetailBox: function() {
       this.isOpen = !this.isOpen;
-      console.log(this.isOpen);
     }
   }
 }
