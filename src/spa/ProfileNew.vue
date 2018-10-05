@@ -70,7 +70,14 @@
                 </div>
               </div>
             </div>
-          </div>
+            <div class='profile-character'>
+              <div class='character-item'><span>성격</span></div>
+              <div class='character-item'><textarea></textarea></div>
+            </div>
+          </div> <!-- detail-info input box -->
+        </div> <!-- detail-info -->
+        <div class='profile-submit-button'>
+          <button>추가</button>
         </div>
       </form>
     </div>
@@ -81,7 +88,7 @@ export default {
   name: 'profile-new',
   data: function() {
     return {
-      isOpen: true,
+      isOpen: fals,
     }
   },
   methods: {
@@ -102,7 +109,7 @@ export default {
   .new-container {
     background-color: #f8f8f7;
     border-top: solid 2px #000000;
-    padding: 6% 4%;
+    padding: 6% 4% 4% 4%;
     width: 50%;
     margin: 0 auto;
   }
@@ -160,12 +167,16 @@ export default {
   .profile-detail-container .profile-company .company-name span { display: inline-block; min-width: 3.4rem; }
   .profile-detail-container .profile-company .company-name input { margin-right: 2.7rem; }
   .profile-detail-container .profile-address .address-input { min-width: 20rem; }
-  .button {
+  .profile-detail-container .profile-character .character-item { margin: 1rem; }
+  .profile-detail-container .profile-character .character-item textarea { min-width: 100%; height: 6.25rem; }
+  .new-container .profile-submit-button { text-align: center; margin-top: 3rem; }
+  .new-container .profile-submit-button button{
+    cursor: pointer;
     text-decoration: none;
     height: 2.4rem;
     background-color: #727171;
     color: white;
     border: solid 1px #727171;
-    padding: 0.3rem 1.3rem;
+    padding: 0.7rem 5.3rem;
   }
 </style>
