@@ -25,6 +25,16 @@ export default new Router({
       path: '/profile/new',
       name: 'profileNew',
       component: () => import('@/spa/ProfileNew.vue')
+    },
+    {
+      path: '/profile/detail',
+      name: 'profileDetail',
+      component: () => import('@/spa/ProfileDetail.vue')
+    },
+    {
+      path: '/profile/modify',
+      name: 'profileModify',
+      component: () => import('@/spa/ProfileModify.vue')
     }
   ]
 })
