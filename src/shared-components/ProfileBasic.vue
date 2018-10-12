@@ -5,7 +5,7 @@
       <!-- user-image -->
       <div class='profile-user-image'>
         <div class='image-box'>
-          <img class='user-image' :src='image' />
+          <img class='user-image' :src='basicInfo.image' />
         </div>
         <div class='image-upload-box'>
           <!-- <input class='upload-user-iamge' v-bind:name='image' type='file' accept='image/*'/> -->
@@ -20,7 +20,7 @@
               <span>분류</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.category' />
             </div>
           </div>
           <div class='profile-name'>
@@ -28,7 +28,7 @@
               <span>이름</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.name' />
             </div>
           </div>
           <div class='profile-phone'>
@@ -36,7 +36,7 @@
               <span>핸드폰</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.mobile' />
             </div>
           </div>
           <div class='profile-email'>
@@ -44,7 +44,7 @@
               <span>이메일</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.email' />
             </div>
           </div>
           <div class='profile-birth'>
@@ -52,7 +52,7 @@
               <span>생년월일</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.birthDay' />
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
               <span>성별</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.sex' />
             </div>
           </div>
           <div class='profile-age'>
@@ -70,7 +70,7 @@
               <span>나이</span>
             </div>
             <div class='input-inline'>
-              <input type='text' number />
+              <input type='text' v-model='basicInfo.age' number />
             </div>
           </div>
           <div class='profile-blood'>
@@ -78,7 +78,7 @@
               <span>혈액형</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.blood' />
             </div>
           </div>
           <div class='profile-job'>
@@ -86,7 +86,7 @@
               <span>직업</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.job' />
             </div>
           </div>
           <div class='profile-hobby'>
@@ -94,7 +94,7 @@
               <span>취미</span>
             </div>
             <div class='input-inline'>
-              <input type='text' />
+              <input type='text' v-model='basicInfo.hobby' />
             </div>
           </div>
         </div>
@@ -107,10 +107,28 @@
 import { upload } from '@/commons/functions/upload'
 export default {
   name: 'profile-basic',
-  // props: ['image']
+  data: function() {
+    return {
+      basicInfo: {
+        image: 'https://steemitimages.com/0x0/https://media.giphy.com/media/l2QEfVTjzpZqQF6ik/giphy.gif',
+        category: '',
+        name: '',
+        mobile: '',
+        email: '',
+        birthDay: '',
+        sex: '',
+        age: '',
+        blood: '',
+        job: '',
+        hobby: '',
+      }
+    }
+
+  },
   props: {
-    image: {
-      type: String,
+    isSubmit: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -128,8 +146,15 @@ export default {
       //     this.$emit('getChangeImage', event.target.result)
       //   }
       // })(image)
-      reader.onload = (event) => this.$emit('getChangeImage', event.target.result)
+      // reader.onload = (event) => this.$emit('getChangeImage', event.target.result)
+      reader.onload = (event) => this.basicInfo.image = event.target.result
       reader.readAsDataURL(image)
+    },
+  },
+  watch: {
+    isSubmit: function() {
+      if(!this.isSubmit) alert('제한된 접근')
+      this.$emit('sendBasicInfo', this.basicInfo )
     }
   }
 }
