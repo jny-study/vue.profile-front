@@ -153,8 +153,10 @@ export default {
   },
   watch: {
     isSubmit: function() {
+      console.log('change isSubmit in basic')
       if(!this.isSubmit) alert('제한된 접근')
       this.$emit('sendBasicInfo', this.basicInfo )
+      this.$EventBus.$emit('nextStep', true)
     }
   }
 }

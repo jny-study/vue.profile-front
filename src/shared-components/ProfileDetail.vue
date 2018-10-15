@@ -11,7 +11,7 @@
             <span>우편변호</span>
           </div>
           <div class='input-inline'>
-            <input type='text' v-model='detailInfo.zipCode' />
+            <input type='text' v-model='detailInfo.userAddress.zipCode' />
             <button>찾기</button>
           </div>
         </div>
@@ -28,25 +28,25 @@
             <span>주소</span>
           </div>
           <div class='address input-inline'>
-            <input class='address-input' type='text' v-model='detailInfo.address' />
+            <input class='address-input' type='text' v-model='detailInfo.userAddress.address' />
           </div>
           <div class='street input-inline'>
-            <input class='address-input' type='text' v-model='detailInfo.street' />
+            <input class='address-input' type='text' v-model='detailInfo.userAddress.street' />
           </div>
         </div>
         <div class='profile-company'>
           <div class='profile-company-now'>
             <div class='company-name input-inline'>
               <div class='input-inline'><span>직장명</span></div>
-              <div class='input-inline'><input type='text' v-model='detailInfo.companyName' /></div>
+              <div class='input-inline'><input type='text' v-model='detailInfo.company.name' /></div>
             </div>
             <div class='company-departments input-inline'>
               <div class='input-inline'><span>부서</span></div>
-              <div class='input-inline'><input type='text' v-model='detailInfo.companyDepartments' /></div>
+              <div class='input-inline'><input type='text' v-model='detailInfo.company.departments' /></div>
             </div>
             <div class='company-position input-inline'>
               <div class='input-inline'><span>직책</span></div>
-              <div class='input-inline'><input type='text' v-model='detailInfo.companyPosition' /></div>
+              <div class='input-inline'><input type='text' v-model='detailInfo.company.position' /></div>
             </div>
           </div>
         </div>
@@ -67,12 +67,16 @@ export default {
       detailInfo: {
         nickName: '',
         religion: '',
-        zipCode: '',
-        address: '',
-        street: '',
-        companyName: '',
-        companyDepartments: '',
-        companyPosition: '',
+        userAddress: {
+          address: '',
+          street: '',
+          zipCode: '',
+        },
+        company: {
+          name: '',
+          departments: '',
+          position: '',
+        },
         character: '',
       }
     }
@@ -86,11 +90,13 @@ export default {
     toggleDetailBox() {
       this.isOpen = !this.isOpen;
     },
-  },
-  watch: {
-    isSubmit: function() {
+    sendData(status) {
+      if(!status) console.log('err')
       this.$emit('sendDetailInfo', this.detailInfo)
     }
+  },
+  created() {
+    this.$EventBus.$on('nextStep', this.sendData)
   }
 }
 </script>

@@ -10,7 +10,6 @@
         <!-- <profile-basic :basicInfo="basicInfo"></profile-basic> -->
         <!-- <profile-basic v-bind:basicInfo="basicInfo"></profile-basic> -->
         <profile-detail
-          :isSubmit='isSubmit'
           @sendDetailInfo='getDetailInfo'></profile-detail>
         <div class='profile-submit-button'>
           <button>추가</button>
@@ -20,17 +19,18 @@
   </div>
 </template>
 <script>
-import ProfileBaisc from '@/shared-components/ProfileBasic.vue'
+import ProfileBasic from '@/shared-components/ProfileBasic.vue'
 import ProfileDetail from '@/shared-components/ProfileDetail.vue'
 export default {
   name: 'profile-new',
   components: {
-    'profile-basic': ProfileBaisc,
+    'profile-basic': ProfileBasic,
     'profile-detail': ProfileDetail
   },
   data: function() {
     return {
       isSubmit: false,
+      profileInfo: [],
     }
   },
   methods: {
@@ -39,11 +39,18 @@ export default {
       this.isSubmit = true
     },
     getBasicInfo(basicInfo) {
-      console.log(JSON.stringify(basicInfo))
+      this.profileInfo = Object.assign({}, basicInfo)
     },
     getDetailInfo(detailInfo) {
-      console.log('hello Im get detailInfo', detailInfo)
-    }
+      Object.assign(this.profileInfo, detailInfo)
+      this.$http.post('http://127.0.0.1:3000', this.profileInfo)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        alert(err)
+      })
+    },
   },
 }
 </script>
