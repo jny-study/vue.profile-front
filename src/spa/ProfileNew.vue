@@ -44,12 +44,7 @@ export default {
     getDetailInfo(detailInfo) {
       Object.assign(this.profileInfo, detailInfo)
       this.$http.post('http://127.0.0.1:3000', this.profileInfo)
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((err) => {
-        alert(err)
-      })
+      .then(response => this.$router.push('/profile'))
     },
   },
 }
