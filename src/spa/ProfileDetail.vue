@@ -15,7 +15,7 @@
         <!-- basic-info input box -->
         <div class='profile-basic-info'>
           <div class='info-left'>
-            <div class='profile-category'><div class='input-inline'><span>분류</span></div><div class='input-inline'><input type='text' /></div></div>
+            <div class='profile-category'><div class='input-inline'><span>분류</span></div><div class='input-inline'><input type='text' v-bind='user.category'/></div></div>
             <div class='profile-name'><div class='input-inline'><span>이름</span></div><div class='input-inline'><input type='text' /></div></div>
             <div class='profile-phone'><div class='input-inline'><span>핸드폰</span></div><div class='input-inline'><input type='text' /></div></div>
             <div class='profile-email'><div class='input-inline'><span>이메일</span></div><div class='input-inline'><input type='text' /></div></div>
@@ -84,12 +84,18 @@ export default {
   data: function() {
     return {
       isOpen: false,
+      id: this.$route.params.id,
+      user: []
     }
   },
   methods: {
     toggleDetailBox: function() {
       this.isOpen = !this.isOpen;
     }
+  },
+  created() {
+    this.$http.get(`http://127.0.0.1:3000/${this.id}`)
+    .then(response => this.user = response.data)
   }
 }
 </script>
