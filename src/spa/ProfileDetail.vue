@@ -31,7 +31,6 @@
       <div class='profile-detail-container'>
         <button class='profile-detail-button' v-if='isOpen' @click='toggleDetailBox()'>상세 정보 닫기</button>
         <button class='profile-detail-button' v-else @click='toggleDetailBox()'>상세 정보 보기</button>
-        <router-link :to='{ name: "profileModify", params: { id: user._id }}' tag='button'>편집</router-link>
         <!-- detail-info input box -->
         <div v-show='isOpen' class='profile-detail-info'>
           <div class='profile-zipcode input-inline'>
@@ -73,6 +72,10 @@
           </div>
         </div> <!-- detail-info input box -->
       </div> <!-- detail-info -->
+      <div class='profile-submit-button'>
+        <router-link :to='{ name: "profileModify", params: { id: user._id }}' tag='button'>편집</router-link>
+        <button @click='deleteProfile(user._id)'>삭제</button>
+      </div>
     </div>
   </div>
 </template>
@@ -112,9 +115,13 @@ export default {
     }
   },
   methods: {
-    toggleDetailBox: function() {
+    toggleDetailBox() {
       this.isOpen = !this.isOpen;
     },
+    deleteProfile(id) {
+      this.$http.delete(`http://127.0.0.1:3000/${this.id}`)
+      .then(response => this.$router.replace('/profile'))
+    }
   },
   created() {
     this.$http.get(`http://127.0.0.1:3000/${this.id}`)
